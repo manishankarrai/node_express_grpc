@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+service getCompany {
+  rpc Find (companyId) returns (Company) {}
+  rpc Create(Company)  returns (Company) {}
+  rpc Read (companyId) returns (Company) {}
+  rpc Update(Company)  returns (Company) {}
+  rpc Delete(companyId) returns(Empty) {}
+  rpc List(Company)  returns (CompanyList) {}
+}
+
+message companyId {
+  string _id = 1;
+}
+
+message Company {
+  string _id = 1;
+  string name = 2;
+  string address = 3;
+  string type = 4;
+  string createdAt =  5 ;
+  string updatedAt =  6 ;
+}
+
+message CompanyList {
+    repeated Company companies  =  1 ;
+}
+
+message Empty {}

@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+service getEmployee {
+  // Create a new employee
+  rpc Create(Employee) returns (Employee) {}
+  // Read an employee by ID
+  rpc Read(EmployeeId) returns (Employee) {}
+  // Update an existing employee
+  rpc Update(Employee) returns (Employee) {}
+  // Delete an employee by ID
+  rpc Delete(EmployeeId) returns (Empty) {}
+  // List all employees
+  rpc List(Empty) returns (EmployeeList) {}
+}
+
+// Employee message
+message Employee {
+   string _id = 1;             // Unique ID of the employee
+   string firstName = 2;      // First name of the employee
+   string lastName = 3;       // Last name of the employee
+   string department = 4;     // Department of the employee
+   string createdAt =  5 ;
+   string updatedAt =  6 ;
+}
+
+// Employee ID message for Read and Delete operations
+message EmployeeId {
+  string _id = 1;             // ID of the employee to find or delete
+}
+
+// List of employees
+message EmployeeList {
+  repeated Employee employees = 1;  // List of employees
+}
+
+// Empty message for operations that don't require parameters or return values
+message Empty {}
